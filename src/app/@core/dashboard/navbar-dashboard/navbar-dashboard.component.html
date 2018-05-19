@@ -1,0 +1,18 @@
+<div class="nav-side-menu">
+        <div class="brand">Mapeado de perfiles.
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li><a><i class="fa fa-dashboard fa-lg" ></i>Panel</a></li>
+                <li data-toggle="collapse" data-target=".mante" class="collapsed">
+                  <a [routerLink]="['usuarios']"><i class="fa fa-briefcase fa-lg"></i>Usuarios<span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse mante" [routerLink]="['clientes']" ><li>Clientes</li></ul>
+                <ul class="sub-menu collapse mante" [routerLink]="['proveedores']"><li>Proveedores</li></ul>                
+                <li><a [routerLink]="['user']"><i class="fa fa-dashboard fa-lg" ></i>En Construcción</a></li>                
+            </ul>
+            
+        </div>
+      </div>
+      

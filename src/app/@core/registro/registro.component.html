@@ -1,0 +1,282 @@
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/registro-imagen.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content">
+    <div class="container">
+      <div class="owner">
+        <div class="avatar">
+          <img src="assets/img/faces/registro-perfil.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+        </div>
+        <div class="name">
+          <h4 class="title">Sistema de Registro </h4>
+          <br />
+          <h6 class="description">Ingrese todos los datos con el signo * ya que son obligatorios.</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="formInsertarCliente">
+            <div class="card border-secondary">
+              <div class="card-header">
+                Datos Personales
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-check-radio">
+                      <label class="form-check-label">
+                        <input [checked]="true" class="form-check-input" name="tipoPersona" type="radio" value="1" formControlName="tipoPersona"> Natural
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check-radio">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="tipoPersona" value="2" formControlName="tipoPersona"> Jurídico
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="numId">
+                        <label>Rut *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-1 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="divId">
+                        <label>Digito *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="nombre">
+                        <label>Nombre *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="apellido">
+                        <label >Apellido *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="direccion">
+                        <label >Direccion *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboPais" placeholder="Seleccione un Pais *"
+                          optionLabel="name" [showClear]="true" (onChange)="onChangePais($event.value)"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown [style]="{'width':'200px'}" required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboRegion"
+                          placeholder="Seleccione una Region *" optionLabel="name" [showClear]="true" (onChange)="onChangeRegion($event.value)"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboProvincia" placeholder="Seleccione una Provincia *"
+                          optionLabel="name" [showClear]="true" (onChange)="onChangeProvincia($event.value)"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboComuna" placeholder="Seleccione una Comuna *"
+                          optionLabel="name" [showClear]="true" formControlName="comuna"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="tel" class="form-control" pInputText formControlName="telefonoFijo">
+                        <label>Telefono Fijo *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="tel" class="form-control" pInputText formControlName="telefonoCelular">
+                        <label>Celular *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="password" class="form-control" pInputText formControlName="pass">
+                        <label >Contraceña</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="password" class="form-control" pInputText formControlName="repass">
+                        <label>Repita la Contraceña</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="correo">
+                        <label>Correo *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group date">
+                      <span class="ui-float-label">
+                        <p-calendar [locale]="es" inputStyleClass="calendar-posicion" [showIcon]="true" formControlName="fechaNacimiento"></p-calendar>
+                        <span style="margin-left:35px"></span>
+                        <label>Fecha Nacimiento *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 ml-auto mr-auto text-center ">
+              <br />
+              <button class="btn btn-outline-default btn-round" (click)="open(content)">
+                <i class="fa fa-street-view"></i> Añadir Vehiculo</button>
+            </div>
+            <div class="card border-secondary form-margin card-bajar">
+              <div class="card-header">
+                Vehiculos Registrados.
+              </div>
+              <div class="card-body">
+                <div>
+                  <p-table class="table table-bordered table-hover table-responsive" [columns]="cols" [value]="data" [paginator]="true" [rows]="10"
+                    [responsive]="true" [autoLayout]="true">
+                    <ng-template pTemplate="header" let-columns>
+                      <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                      <tr>
+                        <td *ngFor="let col of columns">
+                          {{rowData[col.field]}}
+                        </td>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage" let-columns>
+                      <div class="text-center" [attr.colspan]="data.length">
+                        No se encuentran registrado vehiculos
+                      </div>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 ml-auto mr-auto text-center ">
+              <br />
+              <button class="btn btn-outline-default btn-round" type="button" (click)="guardarCliente(formInsertarCliente.value)">
+                <i class="fa fa-street-view"></i> Registrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br/>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title text-center">Ingresar un Vehículo</h5>
+    <button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formInsertarVehiculo">
+      <div class="row">
+        <div class="col-md-6 form-margin">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <input type="text" class="form-control" pInputText formControlName="patente">
+              <label>Patente *</label>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6 form-margin">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 form-margin">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <p-dropdown (onChange)="onChangeMarca($event.value)" required="true" emptyFilterMessage="No se encontraron resultados" filter="true"
+                [options]="comboMarcaVehiculo" placeholder="Seleccione una Marca de Vehiculo *" optionLabel="name" [showClear]="true"
+                formControlName="idTipoVehiculo"></p-dropdown>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6 form-margin">
+          <div class="form-group">
+            <span class="ui-float-label">
+              <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboModeloVehiculo"
+                placeholder="Seleccione una Marca *" optionLabel="name" [showClear]="true" formControlName="idMarcaVehiculo"></p-dropdown>
+            </span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="left-side">
+      <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cancelar</button>
+    </div>
+    <div class="divider"></div>
+    <div class="right-side">
+      <button type="button" [disabled]="!formInsertarVehiculo.valid" class="btn btn-danger btn-link" (click)="c('Close click'); guardarVehiculo(formInsertarVehiculo.value);">Guardar</button>
+    </div>
+  </div>
+</ng-template>

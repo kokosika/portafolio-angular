@@ -1,0 +1,30 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('assets/img/login-fondo.jpg');">
+      <div class="filter"></div>
+          <div class="container" >
+              <div class="row" >
+                  <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                      <div class="card card-register panel-login">
+                          <h3 class="title texto-blanco">Bienvenido</h3>
+                          <div class="social-line text-center">                             
+                          </div>
+                          <form [formGroup]="rFormLogin" (ngSubmit)="login(rFormLogin.value)" class="register-form">                              
+                            <label>Correo</label>
+                              <input type="email" class="form-control" placeholder="ejemplo@ejemplo.com" formControlName = "nombre">
+                              <label>Contraceña</label>
+                              <input type="password" class="form-control" placeholder="Password" formControlName="contracena">
+                              <button type="submit" class="btn btn-danger btn-block btn-round">Entrar</button>
+                          </form>
+                          <div class="forgot">
+                              <a [routerLink]="['/registro']" class="btn btn-link btn-danger">Registrarce</a>
+                          
+                            </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="footer register-footer text-center">
+                  <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> Pink</h6>
+              </div>
+          </div>
+  </div>
+</div>
