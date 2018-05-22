@@ -45,4 +45,5 @@ export class ClienteModel extends BaseModel {
    * @memberof ClienteModel
    */
   public personaId: number;
+
 }

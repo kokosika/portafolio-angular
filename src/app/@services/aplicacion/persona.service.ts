@@ -106,6 +106,7 @@ export class PersonaService {
     personaDto.telefonoCelular = persona.telefonoCelular;
     personaDto.telefonoFijo = persona.telefonoFijo;
     personaDto.tipoPersonaId = persona.tipoPersona;
+    personaDto.correo = persona.correo;
     return this.http.put<GenericResponse>(this.serverUrl + this.actionUrl, JSON.stringify(personaDto), {
       observe : 'response', headers: this.headers
     });

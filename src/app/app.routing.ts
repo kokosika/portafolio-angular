@@ -16,6 +16,8 @@ import { componentFactoryName } from '@angular/compiler';
 import { UsuariosComponent } from './@core/dashboard/main/usuarios/usuarios.component';
 import { ProveedoresComponent } from './@core/dashboard/main/usuarios/proveedores/proveedores.component';
 import { ClientesComponent } from './@core/dashboard/main/usuarios/clientes/clientes.component';
+import { EmpleadosComponent } from './@core/dashboard/main/usuarios/empleados/empleados.component';
+import { ServiciosComponent } from './@core/dashboard/main/servicios/servicios.component';
 
 /**
  * constantes de rutas de la aplicacion. 
@@ -24,7 +26,9 @@ import { ClientesComponent } from './@core/dashboard/main/usuarios/clientes/clie
 const childrenRoutes: Routes = [
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'proveedores', component: ProveedoresComponent},
-  {path: 'clientes', component: ClientesComponent}
+  {path: 'clientes', component: ClientesComponent},
+  {path: 'empleados', component: EmpleadosComponent},
+  {path: 'servicios', component: ServiciosComponent}
 ];
 
 /**

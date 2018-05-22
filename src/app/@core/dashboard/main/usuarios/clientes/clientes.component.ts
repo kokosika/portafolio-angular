@@ -489,6 +489,7 @@ export class ClientesComponent implements OnInit {
       keyboard: false,
       centered: true
     };
+    const datePipe = new DatePipe('en-US');
     this.clienteId = cliente.idCliente;
     this.personaId = cliente.idPersona;
     this.usuarioId = cliente.idUsuario;
@@ -507,8 +508,8 @@ export class ClientesComponent implements OnInit {
       { campo: 'Nombre Usuario: ' , valor: cliente.nombreUsuario },
       { campo: 'Estado Usuario: ' , valor: cliente.estadoUsuarioNombre },
       { campo: 'Tipo Usuario: ' , valor: cliente.tipoUsuarioNombre },
-      { campo: 'Fecha Creacion: ' , valor: cliente.fechaCreacion },
-      { campo: 'Fecha Ultima edicion: ' , valor: cliente.fechaUltimoUpdate }
+      { campo: 'Fecha Creacion: ' , valor: datePipe.transform(cliente.fechaCreacion, 'dd/MM/yyyy') },
+      { campo: 'Fecha Ultima edicion: ' , valor: datePipe.transform(cliente.fechaUltimoUpdate, 'dd/MM/yyyy' ) }
     ];
     this.clienteEditar = cliente;
     this.resetFormularioEditar(this.clienteEditar);
@@ -727,6 +728,7 @@ export class ClientesComponent implements OnInit {
                   this.vehiculoDataTemporal = [];
                   this.buscarVehiculosPorIdCliente(this.clienteId);
                   alert(resp.body.data);
+                  this.obtenerTodosLosClientes();
                 }
               );
             });

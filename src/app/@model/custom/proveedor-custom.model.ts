@@ -13,11 +13,6 @@ export class ProveedorCustomModel {
     public personaId: number;
 
     /**
-     * Variable que almacena el apellido de la persona
-     */
-    public apellido: string;
-
-    /**
      * Variable que almacena el correo de la persona.
      */
     public correo: string;
@@ -36,11 +31,6 @@ export class ProveedorCustomModel {
      * Variable que almacena el nombre de la persona.
      */
     public nombre: string;
-
-    /**
-     * Variable que almacena el telefono celular de la persona.
-     */
-    public telefonoCelular: number;
 
     /**
      * Variable que almacena el telefono fijo de la persona.
@@ -166,10 +156,5 @@ export class ProveedorCustomModel {
      * Variable que almacena el nombre del tipo de usuario.
      */
     public tipoUsuarioNombre: string;
-    /**
-     * Variable que almacena la fecha de nacimiento.
-     */
-    public fechaNacimiento: Date;
-
-
+    
 }

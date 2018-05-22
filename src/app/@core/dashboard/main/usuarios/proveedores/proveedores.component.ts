@@ -186,14 +186,12 @@ export class ProveedoresComponent implements OnInit {
       numId: [null, Validators.compose([Validators.required])],
       divId: [null, Validators.compose([Validators.required])],
       nombre: [null, Validators.compose([Validators.required])],
-      apellido: [null, Validators.compose([Validators.required])],
       direccion: [null, Validators.compose([Validators.required])],
       telefonoFijo: [null],
-      telefonoCelular: [null],
       correo: [null, Validators.compose([Validators.required])],
-      fechaNacimiento: [null],
-      tipoPersona: [1],
+      tipoPersona: [2],
       comuna: [null],
+      tipoProveedorId: [1],
       pass: [null, Validators.compose([Validators.required])],
       repass: [null, Validators.compose([Validators.required])]
     });
@@ -204,18 +202,16 @@ export class ProveedoresComponent implements OnInit {
       numId: [null, Validators.compose([Validators.required])],
       divId: [null, Validators.compose([Validators.required])],
       nombre: [null, Validators.compose([Validators.required])],
-      apellido: [null, Validators.compose([Validators.required])],
       direccion: [null, Validators.compose([Validators.required])],
       telefonoFijo: [null],
-      telefonoCelular: [null],
       correo: [null, Validators.compose([Validators.required])],
-      fechaNacimiento: [null],
       tipoPersona: [null],
       pais: [null],
       region: [null],
       provincia: [null],
       comuna: [null],
-      estadoClienteId: [null]
+      tipoProveedorId: [null],
+      estadoProveedorId: [null]
     });
   }
 
@@ -267,14 +263,12 @@ export class ProveedoresComponent implements OnInit {
   private iniciarColumnasTablaProveedor(): void {
     this.colsProveedores = [
       { field: 'rut', header: 'Rut' },
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'apellido', header: 'Apellido' },
+      { field: 'nombre', header: 'Razon Social' },
       { field: 'correo', header: 'Correo' },
-      { field: 'telefonoCelular', header: 'Telefono' },
+      { field: 'telefonoFijo', header: 'Telefono' },
       { field: 'comunaNombre', header: 'Comuna' },
       { field: 'fechaCreacion', header: 'Fecha Creacion' },
-      { field: 'sucursalNombre', header: 'Sucursal' },
-      { field: 'estadoClienteNombre', header: 'Estado' }
+      { field: 'estadoProveedorNombre', header: 'Estado' }
     ];
   }
 
@@ -379,22 +373,21 @@ export class ProveedoresComponent implements OnInit {
     this.proveedorId = proveedor.proveedorId;
     this.personaId = proveedor.personaId;
     this.usuarioId = proveedor.idUsuario;
+    const datePipe = new DatePipe('en-US');
     this.proveedorDetalle = [
       { campo: 'Rut: ' , valor: proveedor.rut },
       { campo: 'Nombre: ' , valor: proveedor.nombre },
-      { campo: 'Apellido: ' , valor: proveedor.apellido },
       { campo: 'Correo: ' , valor: proveedor.correo },
       { campo: 'Comuna: ' , valor: proveedor.comunaNombre },
       { campo: 'Direccion: ' , valor: proveedor.direccion },
-      { campo: 'Telefono: ' , valor: proveedor.telefonoCelular },
       { campo: 'Estado Persona: ' , valor: proveedor.estadoPersonaNombre },
       { campo: 'Tipo Persona: ' , valor: proveedor.tipoPersonaNombre },
       { campo: 'Estado Cliente: ' , valor: proveedor.estadoProveedorNombre },
       { campo: 'Nombre Usuario: ' , valor: proveedor.nombreUsuario },
       { campo: 'Estado Usuario: ' , valor: proveedor.estadoUsuarioNombre },
       { campo: 'Tipo Usuario: ' , valor: proveedor.tipoUsuarioNombre },
-      { campo: 'Fecha Creacion: ' , valor: proveedor.fechaCreacion },
-      { campo: 'Fecha Ultima edicion: ' , valor: proveedor.fechaUltimoUpdate }
+      { campo: 'Fecha Creación: ' , valor:  datePipe.transform(proveedor.fechaCreacion, 'dd/MM/yyyy')},
+      { campo: 'Fecha Ultima edición: ' , valor: datePipe.transform(proveedor.fechaUltimoUpdate, 'dd/MM/yyyy') }
     ];
     this.proveedorEditar = proveedor;
     this.resetFormularioEditar(this.proveedorEditar);
@@ -409,6 +402,7 @@ export class ProveedoresComponent implements OnInit {
    * @memberof ProveedoresComponent
    */
   public openEditarProveedor(content: any) {
+    this.resetFormularioEditar(this.proveedorEditar);
     const options: NgbModalOptions = {
       size: 'lg',
       backdrop: 'static',
@@ -449,21 +443,19 @@ export class ProveedoresComponent implements OnInit {
     const persona = new PersonaModel();
     const usuario = new UsuarioModel();
     proveedor.estadoProveedorId = 1;
+    proveedor.tipoProveedorId = obj.tipoProveedorId;
     persona.numId = obj.numId;
     persona.divId = obj.divId;
     persona.nombre = obj.nombre;
-    persona.apellido = obj.apellido;
     persona.direccion = obj.direccion;
     persona.telefonoFijo = obj.telefonoFijo;
-    persona.telefonoCelular = obj.telefonoCelular;
     persona.correo = obj.correo;
-    persona.fechaNacimiento = obj.fechaNacimiento;
     persona.tipoPersonaId = obj.tipoPersona;
     persona.estadoPersonaId = 1;
     persona.comunaId = obj.comuna.code;
     usuario.nombre = persona.correo;
     usuario.contracena = obj.pass;
-    usuario.tipoUsuarioId = 3;
+    usuario.tipoUsuarioId = 4;
     usuario.sucursalId = 1;
     usuario.estadoUsuarioId = 1;
 
@@ -480,17 +472,17 @@ export class ProveedoresComponent implements OnInit {
             const personaId = respBuscar.body.data.id;
             proveedor.personaId = personaId;
             /**
-             * Insertamos el cliente
+             * Insertamos el proveedor
              */
             this.srvProveedor.guardarProveedor(proveedor).subscribe(
-              respCliente => {
+              respProveedor => {
                 usuario.personaId = personaId;
                 /**
                  * Registramos al usuario.
                  */
                 this.srvUsuario.guardarUsuario(usuario).subscribe(
                   respUsuario => {
-                   
+                    this.obtenerTodosLosProveedores();
                   }
                 );
               }
@@ -512,12 +504,12 @@ export class ProveedoresComponent implements OnInit {
    * @memberof ProveedoresComponent
    */
   private resetFormularioEditar(proveedor: ProveedorCustomModel): void {
+    
     this.formEditarProveedor.reset();
     this.formEditarProveedor.controls['tipoPersona'].setValue(proveedor.tipoPersonaId);
     this.formEditarProveedor.controls['numId'].setValue(proveedor.rut.split('-')[0]);
     this.formEditarProveedor.controls['divId'].setValue(proveedor.rut.split('-')[1]);
     this.formEditarProveedor.controls['nombre'].setValue(proveedor.nombre);
-    this.formEditarProveedor.controls['apellido'].setValue(proveedor.apellido);
     this.formEditarProveedor.controls['direccion'].setValue(proveedor.direccion);
     const comboPais = { code: proveedor.paisId , name: proveedor.paisNombre};
     this.onChangePais(comboPais);
@@ -531,13 +523,9 @@ export class ProveedoresComponent implements OnInit {
     const comboComuna = { code: proveedor.comunaId , name: proveedor.comunaNombre};
     this.formEditarProveedor.controls['comuna'].setValue(comboComuna);
     this.formEditarProveedor.controls['telefonoFijo'].setValue(proveedor.telefonoFijo);
-    this.formEditarProveedor.controls['telefonoCelular'].setValue(proveedor.telefonoCelular);
     this.formEditarProveedor.controls['correo'].setValue(proveedor.correo);
-    const datePipe = new DatePipe('en-US');
-    const fechaArray: string[] = datePipe.transform(proveedor.fechaNacimiento, 'dd/MM/yyyy').split('/');
-    const fecha = new Date(Number.parseInt(fechaArray[2]), Number.parseInt(fechaArray[1]) - 1, Number.parseInt(fechaArray[0]) );
-    this.formEditarProveedor.controls['fechaNacimiento'].setValue(fecha);
-    this.formEditarProveedor.controls['estadoClienteId'].setValue(proveedor.estadoProveedorId);
+    this.formEditarProveedor.controls['estadoProveedorId'].setValue(proveedor.estadoProveedorId);
+    this.formEditarProveedor.controls['tipoProveedorId'].setValue(proveedor.tipoProveedorId);
   }
 
   /**
@@ -554,7 +542,7 @@ export class ProveedoresComponent implements OnInit {
       resp => {
         this.srvPersona.editarPersona(proveedor).subscribe(
           respPersona => {
-
+            this.obtenerTodosLosProveedores();
         });
       }
     );

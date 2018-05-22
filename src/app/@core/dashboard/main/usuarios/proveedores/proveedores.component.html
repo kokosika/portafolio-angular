@@ -23,11 +23,11 @@
                   <input *ngSwitchCase="'nombre'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                   <input *ngSwitchCase="'apellido'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                   <input *ngSwitchCase="'correo'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                  <input *ngSwitchCase="'telefonoCelular'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                  <input *ngSwitchCase="'telefonoFijo'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                   <input *ngSwitchCase="'comunaNombre'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                   <input *ngSwitchCase="'fechaCreacion'" pInputText type="date" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                   <input *ngSwitchCase="'sucursalNombre'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
-                  <input *ngSwitchCase="'estadoClienteNombre'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                  <input *ngSwitchCase="'estadoProveedorNombre'" pInputText type="text" class="form-control" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
                 </th>
               </tr>
           </ng-template>
@@ -42,15 +42,15 @@
                 </ng-template>
               </td>
               <td class="text-center">
-                <a style="color: black" href="javascript:void(0)" (click)="openDetalleCliente(rowData, content)">
+                <a style="color: black" href="javascript:void(0)" (click)="openDetalleProveedor(rowData, content)">
                   <i class="fa fa-search"></i>
                 </a>
               </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="emptymessage" let-columns>
-            <div class="text-center" [attr.colspan]="clienteData.length">
-              No se encuentran datos de clientes.
+            <div class="text-center" [attr.colspan]="proveedorData.length">
+              No se encuentran datos de proveedores.
             </div>
           </ng-template>
         </p-table>
@@ -64,7 +64,7 @@
 </div>
 
 
-<!-- Modal que muestra el detalle del cliente. -->
+<!-- Modal que muestra el detalle del proveedor. -->
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h5 class="modal-title text-center">Detalle Proveedor.</h5>
@@ -76,7 +76,7 @@
     <div class="row">
       <table class="table table-striped table-bordered">
         <tbody>
-          <tr *ngFor="let valores of clienteDetalle">
+          <tr *ngFor="let valores of proveedorDetalle">
             <td class="text-right">{{valores.campo}}</td>
             <td class="text-left">{{valores.valor}}</td>
           </tr>
@@ -106,7 +106,7 @@
   <div class="modal-body">
     <div class="row">
       <div class="col-md-12">
-        <form [formGroup]="formEditarCliente">
+        <form [formGroup]="formEditarProveedor">
           <div class="card border-secondary">
             <div class="card-header">
               Datos Personales
@@ -154,18 +154,10 @@
                   <div class="form-group">
                     <span class="ui-float-label">
                       <input type="text" class="form-control" pInputText formControlName="nombre">
-                      <label>Nombre *</label>
+                      <label>Razon Social *</label>
                     </span>
                   </div>
-                </div>
-                <div class="col-md-6 form-margin">
-                  <div class="form-group">
-                    <span class="ui-float-label">
-                      <input type="text" class="form-control" pInputText formControlName="apellido">
-                      <label>Apellido *</label>
-                    </span>
-                  </div>
-                </div>
+                </div>                
               </div>
               <div class="row">
                 <div class="col-md-12 form-margin">
@@ -217,18 +209,10 @@
                   <div class="form-group">
                     <span class="ui-float-label">
                       <input type="tel" class="form-control" pInputText formControlName="telefonoFijo">
-                      <label>Telefono Fijo *</label>
+                      <label>Telefono *</label>
                     </span>
                   </div>
-                </div>
-                <div class="col-md-6 form-margin">
-                  <div class="form-group">
-                    <span class="ui-float-label">
-                      <input type="tel" class="form-control" pInputText formControlName="telefonoCelular">
-                      <label>Celular *</label>
-                    </span>
-                  </div>
-                </div>
+                </div>                
               </div>
               <div class="row">
                 <div class="col-md-6 form-margin">
@@ -238,32 +222,37 @@
                       <label>Correo *</label>
                     </span>
                   </div>
-                </div>
-                <div class="col-md-6 form-margin">
-                  <div class="form-group date">
-                    <span class="ui-float-label">
-                      <p-calendar [dateFormat]="'dd/mm/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2018" [locale]="es"
-                        inputStyleClass="calendar-posicion" [showIcon]="true" formControlName="fechaNacimiento"></p-calendar>
-                      <span style="margin-left:35px"></span>
-                      <label>Fecha Nacimiento *</label>
-                    </span>
+                </div>                
+              </div>
+            </div>
+          </div>
+          <div class="card border-secondary form-margin card-bajar">
+            <div class="card-header">
+              Tipos de Proveedor
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-4" *ngFor="let tiposProveedor of radioTipoProveedor">
+                  <div class="form-check-radio">
+                    <label class="form-check-label">
+                      <input class="form-check-input" name="tipoProveedorId" [value]="tiposProveedor.id" type="radio" value="1" formControlName="tipoProveedorId"> {{tiposProveedor.nombre}}
+                      <span class="form-check-sign"></span>
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-
+          </div>  
           <div class="card border-secondary form-margin card-bajar">
             <div class="card-header">
               Estados del Proveedor
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-md-4" *ngFor="let estadoProveeodr of radioEstadoProveedor">
+                <div class="col-md-4" *ngFor="let estadoProveedor of radioEstadoProveedor">
                   <div class="form-check-radio">
                     <label class="form-check-label">
-                      <input class="form-check-input" name="estadoClienteId" [value]="estadoProveedor.id" type="radio" value="1" formControlName="estadoClienteId"> {{estadoClientes.nombre}}
+                      <input class="form-check-input" name="estadoProveedorId" [value]="estadoProveedor.id" type="radio" value="1" formControlName="estadoProveedorId"> {{estadoProveedor.nombre}}
                       <span class="form-check-sign"></span>
                     </label>
                   </div>
@@ -299,7 +288,7 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-12">
-          <form [formGroup]="formInsertarCliente">
+          <form [formGroup]="formInsertarProveedor">
             <div class="card border-secondary">
               <div class="card-header">
                 Datos Personales
@@ -320,9 +309,7 @@
                       </label>
                     </div>
                   </div>
-                  <div class="col-md-6">
-  
-                  </div>
+                  <div class="col-md-6"></div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 form-margin">
@@ -343,22 +330,14 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6 form-margin">
+                  <div class="col-md-12 form-margin">
                     <div class="form-group">
                       <span class="ui-float-label">
-                        <input type="text" class="form-control" pInputText formControlName="nombre">
-                        <label>Nombre *</label>
+                        <input type="text" maxlength="50" class="form-control" pInputText formControlName="nombre">
+                        <label>Razón Social *</label>
                       </span>
                     </div>
-                  </div>
-                  <div class="col-md-6 form-margin">
-                    <div class="form-group">
-                      <span class="ui-float-label">
-                        <input type="text" class="form-control" pInputText formControlName="apellido">
-                        <label>Apellido *</label>
-                      </span>
-                    </div>
-                  </div>
+                  </div>                 
                 </div>
                 <div class="row">
                   <div class="col-md-12 form-margin">
@@ -410,20 +389,10 @@
                     <div class="form-group">
                       <span class="ui-float-label">
                         <input type="tel" class="form-control" pInputText formControlName="telefonoFijo">
-                        <label>Telefono Fijo *</label>
+                        <label>Telefono</label>
                       </span>
                     </div>
                   </div>
-                  <div class="col-md-6 form-margin">
-                    <div class="form-group">
-                      <span class="ui-float-label">
-                        <input type="tel" class="form-control" pInputText formControlName="telefonoCelular">
-                        <label>Celular *</label>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
                   <div class="col-md-6 form-margin">
                     <div class="form-group">
                       <span class="ui-float-label">
@@ -431,20 +400,27 @@
                         <label>Correo *</label>
                       </span>
                     </div>
-                  </div>
-                  <div class="col-md-6 form-margin">
-                    <div class="form-group date">
-                      <span class="ui-float-label">
-                        <p-calendar [dateFormat]="'dd/mm/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2018" [locale]="es"
-                          inputStyleClass="calendar-posicion" [showIcon]="true" formControlName="fechaNacimiento"></p-calendar>
-                        <span style="margin-left:35px"></span>
-                        <label>Fecha Nacimiento *</label>
-                      </span>
+                  </div>                 
+                </div>                
+              </div>
+            </div> 
+            <div class="card border-secondary form-margin card-bajar">
+              <div class="card-header">
+                Tipos de Proveedor
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4" *ngFor="let tiposProveedor of radioTipoProveedor">
+                    <div class="form-check-radio">
+                      <label class="form-check-label">
+                        <input class="form-check-input" name="tipoProveedorId" [value]="tiposProveedor.id" type="radio" value="1" formControlName="tipoProveedorId"> {{tiposProveedor.nombre}}
+                        <span class="form-check-sign"></span>
+                      </label>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>            
+            </div>           
           </form>
         </div>
       </div>

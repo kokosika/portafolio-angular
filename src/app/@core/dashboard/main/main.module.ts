@@ -10,10 +10,20 @@ import { ProveedoresComponent } from './usuarios/proveedores/proveedores.compone
 import { ClientesComponent } from './usuarios/clientes/clientes.component';
 import { BarraEstadoComponent } from './barra-estado/barra-estado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmpleadosComponent } from './usuarios/empleados/empleados.component';
+import { ServiciosComponent } from './servicios/servicios.component';
 
 @NgModule({
-  declarations: [MainComponent, UsuariosComponent, ProveedoresComponent, ClientesComponent, BarraEstadoComponent],
-  imports: [ 
+  declarations: [
+    MainComponent,
+    UsuariosComponent,
+    ProveedoresComponent,
+    ClientesComponent,
+    BarraEstadoComponent,
+    EmpleadosComponent,
+    ServiciosComponent
+],
+  imports: [
     CommonModule,
     NgPrimeModule,
     NgbModule.forRoot(),

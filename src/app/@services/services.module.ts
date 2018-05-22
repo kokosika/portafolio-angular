@@ -10,6 +10,7 @@ import { ClienteService } from './aplicacion/cliente.service';
 import { GuardViewChildrenService } from './auth/guard-view-children.service';
 import { GuardViewService } from './auth/guard-view.service';
 import { ProveedorService } from './aplicacion/proveedor.service';
+import { EmpleadoService } from './aplicacion/empleado.service';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import { ProveedorService } from './aplicacion/proveedor.service';
     PersonaService,
     VehiculoService,
     UtilidadService,
-    ProveedorService
+    ProveedorService,
+    EmpleadoService
   ]
 })
 export class ServicesModule {}
