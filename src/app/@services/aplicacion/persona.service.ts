@@ -90,8 +90,9 @@ export class PersonaService {
    * @memberof PersonaService
    */
   public editarPersona( persona: any ): Observable<HttpResponse<GenericResponse>> {
+    
     const personaDto = new PersonaModel();
-    personaDto.id = persona.idPersona;
+    personaDto.id = persona.personaId;
     personaDto.numId = persona.numId;
     personaDto.apellido = persona.apellido;
     personaDto.comunaId = persona.comuna.code;
@@ -107,6 +108,7 @@ export class PersonaService {
     personaDto.telefonoFijo = persona.telefonoFijo;
     personaDto.tipoPersonaId = persona.tipoPersona;
     personaDto.correo = persona.correo;
+    console.log(personaDto);
     return this.http.put<GenericResponse>(this.serverUrl + this.actionUrl, JSON.stringify(personaDto), {
       observe : 'response', headers: this.headers
     });

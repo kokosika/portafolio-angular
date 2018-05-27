@@ -13,7 +13,7 @@
                               <input type="email" class="form-control" placeholder="ejemplo@ejemplo.com" formControlName = "nombre">
                               <label>Contraceña</label>
                               <input type="password" class="form-control" placeholder="Password" formControlName="contracena">
-                              <button type="submit" class="btn btn-danger btn-block btn-round">Entrar</button>
+                              <button type="submit" [disabled]="!rFormLogin.valid" class="btn btn-danger btn-block btn-round">Entrar</button>
                           </form>
                           <div class="forgot">
                               <a [routerLink]="['/registro']" class="btn btn-link btn-danger">Registrarce</a>

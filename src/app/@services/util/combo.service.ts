@@ -119,4 +119,16 @@ export class ComboService extends BaseService {
   public getComboModelo(obj: ComboModel): Observable<HttpResponse<GenericResponse>> {
     return this.Post(this.actionUrl + '/modelo', obj);
   }
+
+  /**
+   * Llamada http de tipo post al servidor a la url /combo/sucursal
+   * 
+   * @returns {Observable<HttpResponse<GenericResponse>>} respuesta observable asincrona 
+   * del servidor almacenada en la clase GenericResponse, donde se almacenara los 
+   * parametros de respuesta.
+   * @memberof ComboService
+   */
+  public getComboSucursal(): Observable<HttpResponse<GenericResponse>> {
+    return this.Post(this.actionUrl + '/sucursal', null);
+  }
 }

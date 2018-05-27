@@ -56,11 +56,11 @@ export class LoginComponent implements OnInit {
     this.rFormLogin = this.fb.group({
       nombre: [
         null,
-        Validators.compose([Validators.required, Validators.maxLength(100)])
+        Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(0)])
       ],
       contracena: [
         null,
-        Validators.compose([Validators.required, Validators.maxLength(100)])
+        Validators.compose([Validators.required, Validators.maxLength(100), Validators.minLength(3)])
       ]
     });
   }

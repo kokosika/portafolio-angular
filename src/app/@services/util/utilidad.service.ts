@@ -90,4 +90,34 @@ export class UtilidadService {
       headers: this.headers
     });
   }
+
+  /**
+   * Llamada http del tipo get al servidor a la url /utilidad/radio-estado-empleado
+   * 
+   * @returns {Observable<HttpResponse<GenericResponse>>} respuesta observable asincrona
+   * del servidor almacenada en la clase GenericResponse, donde se almacenara los parametros
+   * de respuesta.
+   * @memberof UtilidadService
+   */
+  public getRadioEstadoEmpleado(): Observable<HttpResponse<GenericResponse>> {
+    return this.http.get<GenericResponse>(this.serverUrl + this.actionUrl + '/radio-estado-empleado', {
+      observe: 'response',
+      headers: this.headers
+    });
+  }
+
+  /**
+   * Llamada http del tipo get al servidor a la url /utilidad/radio-tipo-empleado
+   * 
+   * @returns {Observable<HttpResponse<GenericResponse>>} respuesta observable asincrona
+   * del servidor almacenada en la clase GenericResponse, donde se almacenara los parametros
+   * de respuesta.
+   * @memberof UtilidadService
+   */
+  public getRadioTipoEmpleado(): Observable<HttpResponse<GenericResponse>> {
+    return this.http.get<GenericResponse>(this.serverUrl + this.actionUrl + '/radio-tipo-empleado', {
+      observe: 'response',
+      headers: this.headers
+    });
+  }
 }
