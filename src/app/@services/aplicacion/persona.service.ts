@@ -90,7 +90,6 @@ export class PersonaService {
    * @memberof PersonaService
    */
   public editarPersona( persona: any ): Observable<HttpResponse<GenericResponse>> {
-    
     const personaDto = new PersonaModel();
     personaDto.id = persona.personaId;
     personaDto.numId = persona.numId;

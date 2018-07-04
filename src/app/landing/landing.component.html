@@ -5,7 +5,7 @@
             <h1>Servi-Express</h1>
             <h3>Mucho Texto</h3>
             <br />            
-            <button type="button" class="btn btn-outline-neutral btn-round" (click)="loginRedirigir()">Ingresar</button>
+            <button type="button" *ngIf="!isAuthenticate" class="btn btn-outline-neutral btn-round" (click)="loginRedirigir()">Ingresar</button>
         </div>
     </div>
 </div>

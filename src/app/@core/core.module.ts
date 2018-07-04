@@ -12,6 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LogoutComponent } from './logout/logout.component';
+import { LoginBuenoComponent } from './login-bueno/login-bueno.component';
+import { ServiciosComponent } from './servicios/servicios.component';
+import { ProductosComponent } from './productos/productos.component';
 
 /**
  * Modulo principal de los componenetes de la aplicacion.
@@ -27,8 +31,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
     PerfilComponent,
-    RegistroComponent
-  ],
+    RegistroComponent,
+    LogoutComponent,
+    LoginBuenoComponent,
+    ServiciosComponent,
+    ProductosComponent
+],
   imports: [
     CommonModule,
     DashboardModule,

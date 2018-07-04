@@ -131,4 +131,8 @@ export class ComboService extends BaseService {
   public getComboSucursal(): Observable<HttpResponse<GenericResponse>> {
     return this.Post(this.actionUrl + '/sucursal', null);
   }
+
+  public getVechiculoPorUsuario(obj: ComboModel): Observable<HttpResponse<GenericResponse>> {
+    return this.Post(this.actionUrl + '/vehiculo', obj);
+  }
 }

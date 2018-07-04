@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: any,
         private element: ElementRef,
         public location: Location) {
-
+            this.router.navigate(['']);
         }
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement.children[0].children[0];
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
             } else {
                 window.document.activeElement.scrollTop = 0;
             }
-            if ( this.removeNavbar() ){
+            if ( this.removeNavbar() ) {
                 this.navbar.sidebarClose();
             }
         });
@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
             body.classList.add('ie-background');
 
         }
+        this.router.navigate(['']);
 
     }
     removeFooter() {
@@ -71,7 +72,7 @@ export class AppComponent implements OnInit {
         return true;
     }
 
-    removeNavbar(){
+    removeNavbar() {
         let title = this.location.prepareExternalUrl(this.location.path());
         title = title.slice( 1 );
         const arrayTitulo = title.split('/');

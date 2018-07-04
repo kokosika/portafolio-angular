@@ -1,0 +1,177 @@
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/ilya-yakover.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content">
+    <div class="container">
+      <div class="owner">
+        <div class="name">
+          <h4 class="title">Contrata nuestros servicios.
+            <br />
+          </h4>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card border-secondary">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6 text text-left">
+                Servicios Disponibles.
+              </div>
+              <div class="col-md-6 text text-right">
+                <a (click)="open(content)" [hidden]="(serviciosSolicitados.length === 0)" href="javascript:void(0)" style="margin-right: 10px;">
+                  <img style="width: 40px; height: 40px;" src="assets/img/carrito.png" alt=""> {{serviciosSolicitados.length}} </a>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6" *ngFor="let item of servicios">
+                <div>
+                  <div class="card border-secondary">
+                    <div class="card-header">
+                      <div class="row">
+                        <div class="col-md-6 text-left">
+                          {{item.tipoServicioNombre}}
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" value="" (change)="seleccion(item, $event.target.checked);"> Elejir
+                              <span class="form-check-sign"></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <p>Costo : ${{item.costo}}</p>
+                      <p>Cargo por Producto: {{(item.valorCalculado * 100)}} %</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+</div>
+
+
+<!--Modal -->
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title text-center">Servicios Seleccionados.</h5>
+    <button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p-steps [model]="items" styleClass="steps-custom" [activeIndex]=activeIndex></p-steps>
+    <div *ngIf="(activeIndex == 0)">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Pago Producto</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of serviciosSolicitados; let i = index">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{item.tipoServicioNombre}}</td>
+            <td>$ {{item.costo}}</td>
+            <td>{{(item.valorCalculado * 100)}} %</td>
+            <td>$ {{item.costo + (item.costo * item.valorCalculado)}}</td>
+          </tr>
+          <tr>
+            <td colspan="4">Total</td>
+            <td>$ {{totalCargo}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="(activeIndex == 1)">
+        <div class="text-center">
+            <p>Seleccione una fecha para su Atención</p>
+            <p-calendar [locale]="es" [minDate]="minDate" [(ngModel)]="calendarValue" (onChange)="changeCalendar($event.value)" inputStyleClass="calendar-posicion" [monthNavigator]="true" [yearNavigator]="true"  yearRange="1900:2018" [showIcon]="true" ></p-calendar>
+        </div>
+        <div class="text-center">
+            <br>
+            <br>
+          <p-dropdown [style]="{'width':'200px'}" required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboSucursal"
+            placeholder="Seleccione una Sucursal *" (onChange)="changeSucursal($event.value)" optionLabel="name" [showClear]="true" [(ngModel)]="sucursalValue"></p-dropdown>
+        </div>
+        <div class="text-center">
+          <br>
+          <br>
+          <p-dropdown [style]="{'width':'200px'}" required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboVehiculo"
+            placeholder="Seleccione un Vehiculo *" (onChange)="changeVehiculo($event.value)" optionLabel="name" [showClear]="true" [(ngModel)]="vehiculoValue"></p-dropdown>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <div *ngIf="(activeIndex == 2)">
+      <div class="text-center">
+        <p>¿Desea confirmar la operación?</p>
+        <p>Si desea confirmar la operación proceda a continuar con el boton siguiente</p>
+        </div>
+    </div>
+    <div *ngIf="(activeIndex == 3)" id="testPrint">
+      <div>Listado de Servicios Contratados</div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Servicio</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Pago Producto</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of serviciosSolicitados; let i = index">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{item.tipoServicioNombre}}</td>
+            <td>$ {{item.costo}}</td>
+            <td>{{(item.valorCalculado * 100)}} %</td>
+            <td>$ {{item.costo + (item.costo * item.valorCalculado)}}</td>
+          </tr>
+          <tr>
+            <td colspan="4">Total</td>
+            <td>$ {{totalCargo}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="left-side">
+      <button type="button" class="btn btn-default btn-link" (click)="c('Close click')">Cancelar</button>
+    </div>
+    <div class="divider" *ngIf="(activeIndex == 3)"></div>
+    <div class="right-side" *ngIf="(activeIndex == 3)">
+      <button type="button" *ngIf="(activeIndex == 3)" class="btn btn-default btn-link" (click)="testPDF();">Descargar Pdf</button>      
+    </div>
+    <div class="divider"></div>
+    <div class="right-side">
+      <button type="button" *ngIf="(activeIndex != 3)" [disabled]="!validarSiguiente" class="btn btn-danger btn-link" (click)="siguiente(); ">Siguiente</button>      
+      <button type="button" *ngIf="(activeIndex == 3)" class="btn btn-default btn-link" (click)="c('Close click')">Terminar</button>
+    </div>    
+  </div>
+</ng-template>

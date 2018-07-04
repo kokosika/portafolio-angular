@@ -1,86 +1,274 @@
 <div class="wrapper">
-    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../assets/img/fabio-mangione.jpg');">
-        <div class="filter"></div>
-    </div>
-    <div class="section profile-content">
-        <div class="container">
-            <div class="owner">
-                <div class="avatar">
-                    <img src="../assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-                <div class="name">
-                    <h4 class="title">Jane Faker<br /></h4>
-                    <h6 class="description">Music Producer</h6>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto text-center">
-                    <p>An artist of considerable range, Jane Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
-                    <br />
-                    <button class="btn btn-outline-default btn-round"><i class="fa fa-cog"></i> Settings</button>
-                </div>
-            </div>
-            <br/>
-            <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                    <ngb-tabset [justify]="'center'">
-                        <ngb-tab title="Follows">
-                            <ng-template ngbTabContent >
-                                <div class="row following" id="follows">
-                                    <div class="col-md-6 ml-auto mr-auto">
-                                        <ul class="list-unstyled follows">
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-md-2 col-sm-2 ml-auto mr-auto">
-                                                        <img src="../assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                                    </div>
-                                                    <div class="col-md-7 col-sm-4 ml-auto">
-                                                        <h6>Flume<br/><small>Musical Producer</small></h6>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-2 ml-auto mr-auto">
-                                                        <div class="form-check">
-                                                          <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value="" checked="">
-                                                            <span class="form-check-sign"></span>
-                                                          </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <hr />
-                                            <li>
-                                                <div class="row">
-                                                    <div class="col-md-2 col-sm-2 ml-auto mr-auto">
-                                                        <img src="../assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                                                    </div>
-                                                    <div class="col-md-7 col-sm-4 ml-auto">
-                                                        <h6>Banks<br /><small>Singer</small></h6>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-2 ml-auto mr-auto">
-                                                        <div class="form-check">
-                                                          <label class="form-check-label">
-                                                            <input class="form-check-input" type="checkbox" value="" checked="">
-                                                            <span class="form-check-sign"></span>
-                                                          </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab title="Following">
-                            <ng-template ngbTabContent>
-                                <h3 class="text-muted">Not following anyone yet :(</h3>
-                                <br>
-                                <button class="btn btn-warning btn-round">Find artists</button>
-                            </ng-template>
-                        </ngb-tab>
-                    </ngb-tabset>
-                </div>
-            </div>
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content">
+    <div class="container">
+      <div class="owner">
+        <div class="name">
+          <h4 class="title">Editar Perfil</h4>
+          <br />
+          <a [routerLink]="['/servicios-contratados']" class="nav-link"><i class="nc-icon nc-settings"></i> Ver Servicios Contratados</a>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form [formGroup]="formPerfil">
+            <div class="card border-secondary">
+              <div class="card-header">
+                Datos Personales
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-check-radio">
+                      <label class="form-check-label">
+                        <input class="form-check-input" name="tipoPersona" [value]="1" type="radio" value="1" formControlName="tipoPersona"> Natural
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                    <div class="form-check-radio">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="tipoPersona" [value]="2" value="2" formControlName="tipoPersona"> Jurídico
+                        <span class="form-check-sign"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="numId">
+                        <label>Rut *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-2 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="divId">
+                        <label>Digito *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="nombre">
+                        <label>Nombre *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="apellido">
+                        <label>Apellido *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="direccion">
+                        <label>Direccion *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboPais" placeholder="Seleccione un Pais *"
+                          optionLabel="name" [showClear]="true" (onChange)="onChangePais($event.value)" formControlName="pais"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown [style]="{'width':'200px'}" required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboRegion"
+                          placeholder="Seleccione una Region *" optionLabel="name" [showClear]="true" formControlName="region"
+                          (onChange)="onChangeRegion($event.value)"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboProvincia" placeholder="Seleccione una Provincia *"
+                          optionLabel="name" [showClear]="true" formControlName="provincia" (onChange)="onChangeProvincia($event.value)"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboComuna" placeholder="Seleccione una Comuna *"
+                          optionLabel="name" [showClear]="true" formControlName="comuna"></p-dropdown>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="tel" class="form-control" pInputText formControlName="telefonoFijo">
+                        <label>Telefono Fijo *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="tel" class="form-control" pInputText formControlName="telefonoCelular">
+                        <label>Celular *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group">
+                      <span class="ui-float-label">
+                        <input type="text" class="form-control" pInputText formControlName="correo">
+                        <label>Correo *</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-margin">
+                    <div class="form-group date">
+                      <span class="ui-float-label">
+                        <p-calendar [dateFormat]="'dd/mm/yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2018" [locale]="es"
+                          inputStyleClass="calendar-posicion" [showIcon]="true" formControlName="fechaNacimiento"></p-calendar>
+                        <span style="margin-left:35px"></span>
+                        <label>Fecha Nacimiento *</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 ml-auto mr-auto text-center ">
+              <br />
+              <button class="btn btn-outline-default btn-round" (click)="openIngresarVehiculos()">
+                <i class="fa fa-street-view"></i> Añadir Vehiculo</button>
+            </div>
+
+            <div class="card border-secondary form-margin card-bajar">
+              <div class="card-header">
+
+              </div>
+              <div class="card-body" *ngIf="anadirVehiculo">
+                <div>
+                  <form [formGroup]="formInsertarVehiculo">
+                    <div class="row">
+                      <div class="col-md-6 form-margin">
+                        <div class="form-group">
+                          <span class="ui-float-label">
+                            <input type="text" class="form-control" pInputText formControlName="patente">
+                            <label>Patente *</label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 form-margin">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 form-margin">
+                        <div class="form-group">
+                          <span class="ui-float-label">
+                            <p-dropdown (onChange)="onChangeMarca($event.value)" required="true" emptyFilterMessage="No se encontraron resultados" filter="true"
+                              [options]="comboMarcaVehiculo" placeholder="Seleccione una Marca de Vehiculo *" optionLabel="name"
+                              [showClear]="true" formControlName="idTipoVehiculo"></p-dropdown>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6 form-margin">
+                        <div class="form-group">
+                          <span class="ui-float-label">
+                            <p-dropdown required="true" emptyFilterMessage="No se encontraron resultados" filter="true" [options]="comboModeloVehiculo"
+                              placeholder="Seleccione una Marca *" optionLabel="name" [showClear]="true" formControlName="idMarcaVehiculo"></p-dropdown>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="modal-footer">
+                    <div class="left-side">
+                      <button type="button" class="btn btn-default btn-link" (click)="openIngresarVehiculos()">Cancelar</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                      <button type="button" class="btn btn-danger btn-link" (click)="guardarVehiculo(formInsertarVehiculo.value)">Guardar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Modal para el ingreso de vehiculos-->
+
+
+            <div class="card border-secondary form-margin card-bajar">
+              <div class="card-header">
+                Vehiculos Registrados.
+              </div>
+              <div class="card-body">
+                <div>
+                  <p-table class="table table-bordered table-hover table-responsive" [columns]="colsVehiculos" [value]="vehiculoData" [paginator]="true"
+                    [rows]="10" [responsive]="true" [autoLayout]="true">
+                    <ng-template pTemplate="header" let-columns>
+                      <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                          {{col.header}}
+                          <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                      </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                      <tr>
+                        <td *ngFor="let col of columns">
+                          <div *ngIf="(col.field == 'fechaCreacion'); else elseBlock">
+                            {{rowData[col.field] | date:'dd/MM/yyyy'}}
+                          </div>
+                          <ng-template #elseBlock>
+                            {{rowData[col.field]}}
+                          </ng-template>
+                        </td>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage" let-columns>
+                      <div class="text-center" [attr.colspan]="vehiculoData.length">
+                        No se encuentran registrado vehiculos
+                      </div>
+                    </ng-template>
+                  </p-table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+    <div class="modal-footer">
+      <div class="left-side">
+        <button type="button" class="btn btn-default btn-link">Cancelar</button>
+      </div>
+      <div class="divider"></div>
+      <div class="right-side">
+        <button type="button" class="btn btn-danger btn-link" (click)="editarCliente(formPerfil.value);">Editar</button>
+      </div>
+    </div>
+  </div>
 </div>

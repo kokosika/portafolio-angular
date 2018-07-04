@@ -1,3 +1,6 @@
+import { ServiciosComponent } from './@core/servicios/servicios.component';
+import { AppComponent } from './app.component';
+import { PerfilComponent } from './@core/perfil/perfil.component';
 import { GuardViewService } from './@services/auth/guard-view.service';
 import { RegistroComponent } from './@core/registro/registro.component';
 import { NgModule } from '@angular/core';
@@ -13,11 +16,14 @@ import { NucleoiconsComponent } from './components/nucleoicons/nucleoicons.compo
 import { LoginComponent } from './@core/login/login.component';
 import { DashboardComponent } from './@core/dashboard/dashboard.component';
 import { componentFactoryName } from '@angular/compiler';
-import { UsuariosComponent } from './@core/dashboard/main/usuarios/usuarios.component';
 import { ProveedoresComponent } from './@core/dashboard/main/usuarios/proveedores/proveedores.component';
 import { ClientesComponent } from './@core/dashboard/main/usuarios/clientes/clientes.component';
 import { EmpleadosComponent } from './@core/dashboard/main/usuarios/empleados/empleados.component';
-import { ServiciosComponent } from './@core/dashboard/main/servicios/servicios.component';
+import { UsuariosComponent } from './@core/dashboard/main/usuarios/usuarios.component';
+import { LogoutComponent } from './@core/logout/logout.component';
+import { LoginBuenoComponent } from './@core/login-bueno/login-bueno.component';
+import { ProductosComponent } from './@core/productos/productos.component';
+import { ServiciosContratadosComponent } from './servicios-contratados/servicios-contratados.component';
 
 /**
  * constantes de rutas de la aplicacion. 
@@ -27,8 +33,7 @@ const childrenRoutes: Routes = [
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'proveedores', component: ProveedoresComponent},
   {path: 'clientes', component: ClientesComponent},
-  {path: 'empleados', component: EmpleadosComponent},
-  {path: 'servicios', component: ServiciosComponent}
+  {path: 'empleados', component: EmpleadosComponent}
 ];
 
 /**
@@ -41,6 +46,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'perfil', component: ProfileComponent},
+  { path: 'logout', component: LogoutComponent},
+  { path: 'login-bueno', component: LoginBuenoComponent},
+  { path: 'servicios', component: ServiciosComponent},
+  { path: 'servicios-contratados' , component: ServiciosContratadosComponent},
+  { path: 'productos', component: ProductosComponent},
   { path: 'panel', component: DashboardComponent, children: childrenRoutes, canActivate: [GuardViewService]},
   { path: 'user-profile', component: ProfileComponent },
   { path: 'signup', component: SignupComponent },

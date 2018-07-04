@@ -19,20 +19,22 @@ import { HomeModule } from './home/home.module';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgPrimeModule } from './ng-prime.module';
+import { ServiciosContratadosComponent } from './servicios-contratados/servicios-contratados.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SignupComponent,
-    LandingComponent,
-    ProfileComponent,
-    NavbarComponent,
-    FooterComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    NgbModule.forRoot(),
+   declarations: [
+      AppComponent,
+      SignupComponent,
+      LandingComponent,
+      ProfileComponent,
+      NavbarComponent,
+      FooterComponent,
+      ServiciosContratadosComponent
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

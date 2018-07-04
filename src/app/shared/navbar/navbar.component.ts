@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../@services/aplicacion/usuario.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
@@ -9,12 +10,18 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
+    public isAutenticate = false;
 
-    constructor(public location: Location, private element: ElementRef) {
+    constructor(public location: Location, private element: ElementRef, private srvUsuario: UsuarioService) {
         this.sidebarVisible = false;
+        console.log('nav  const' + this.srvUsuario.isAutenticate());
+        this.isAutenticate = this.srvUsuario.isAutenticate();
+        this.ngOnInit();
     }
 
     ngOnInit() {
+        console.log('nav init' + this.srvUsuario.isAutenticate());
+        this.isAutenticate = this.srvUsuario.isAutenticate();
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     }
@@ -63,5 +70,9 @@ export class NavbarComponent implements OnInit {
         } else {
             return false;
         }
+    }
+
+    public salir(): void {
+        this.srvUsuario.resetCuenta();
     }
 }

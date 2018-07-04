@@ -2,7 +2,6 @@ import { baseServerUrl, headers } from './../../app.config';
 import { GenericResponse } from './../../@model/util/GenericResponse';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { BaseService } from '../base.service';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { ClienteModel } from '../../@model/aplicacion/cliente.model';
 import { UsuarioService } from './usuario.service';
@@ -125,6 +124,14 @@ export class ClienteService {
   public obtenerTodosLosClientes(): Observable<HttpResponse<GenericResponse>> {
     return this.http.get<GenericResponse>(this.serverUrl + this.actionUrl, {
       observe: 'response',
+      headers: this.headers
+    });
+  }
+
+  public buscarClientePorNombre(nombre: string): Observable<HttpResponse<GenericResponse>> {
+    return this.http.get<GenericResponse>(this.serverUrl + this.actionUrl + '/buscar-cliente-por-nombre', {
+      observe: 'response',
+      params: { nombre: nombre.toString() } ,
       headers: this.headers
     });
   }

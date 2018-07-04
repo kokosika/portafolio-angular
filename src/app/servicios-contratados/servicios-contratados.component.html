@@ -1,0 +1,83 @@
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');">
+        <div class="filter"></div>
+    </div>
+    <div class="section profile-content">
+        <div class="container">
+            <div class="owner">
+                <div class="name">
+                    <h4 class="title">Servicios Contratados</h4>
+                    <br />
+                    <a [routerLink]="['/perfil']" class="nav-link">
+                        <i class="nc-icon nc-settings"></i> Volver al Perfil</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card border-secondary">
+                        <div class="card-header">
+                            Servicios Contratados
+                        </div>
+                        <div class="card-body">
+                            <p-table [columns]="cols" class="table table-bordered table-hover table-responsive" [value]="reservaCliente" dataKey="reservaId">
+                                <ng-template pTemplate="header" let-columns>
+                                    <tr>
+                                        <th style="width: 2.25em"></th>
+                                        <th *ngFor="let col of columns">
+                                            {{col.header}}
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+                                    <tr>
+                                        <td>
+                                            <a href="#" [pRowToggler]="rowData">
+                                                <i (click)="obtenerIdTablaServicios(rowData)" [ngClass]="expanded ? 'fa fa-fw fa-chevron-circle-down' : 'fa fa-fw fa-chevron-circle-right'"></i>
+                                            </a>
+                                        </td>
+                                        <td *ngFor="let col of columns">
+                                            <div *ngIf="(col.field == 'fechaResarva'); else elseBlock">
+                                                {{rowData[col.field] | date:'dd/MM/yyyy'}}
+                                            </div>
+                                            <ng-template #elseBlock>
+                                                {{rowData[col.field]}}
+                                            </ng-template>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                                    <tr>
+                                        <td [attr.colspan]="columns.length + 1">
+                                            <p-table #dt class="table table-bordered table-hover table-responsive" [columns]="colsDetalle" [value]="detalleServicio"
+                                                [paginator]="true" [rows]="10" [responsive]="true" [autoLayout]="true">
+                                                <ng-template pTemplate="header" let-columns>
+                                                    <tr>
+                                                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                                            {{col.header}}
+                                                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                                                        </th>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                                    <tr>
+                                                        <td *ngFor="let col of columns">
+                                                            <div *ngIf="(col.field == 'fechaCreacion'); else elseBlock">
+                                                                {{rowData[col.field] | date:'dd/MM/yyyy'}}
+                                                            </div>
+                                                            <ng-template #elseBlock>
+                                                                {{rowData[col.field]}}
+                                                            </ng-template>
+                                                        </td>
+                                                </ng-template>
+                                            </p-table>
+                                        </td>
+                                        </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

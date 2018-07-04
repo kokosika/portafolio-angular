@@ -28,7 +28,7 @@ export class UsuarioService {
   protected headers: HttpHeaders = headers;
 
   private token: string;
-  private isAuthentication: boolean;
+  private isAuthentication = false;
   private role: string;
   private username: string;
 
@@ -65,6 +65,7 @@ export class UsuarioService {
     }).subscribe( (resp: HttpResponse<any>) => {
       this.token =  resp.headers.get('Authorization').replace('Bearer', '').trim();
       localStorage.setItem('token', this.token);
+      this.username = model.username;
       this.validarToken();
       this.redirecLoging();
     });
@@ -98,7 +99,7 @@ public getToken (): string {
 
 public redirecLoging () {
     if ( this.isAutenticate() ) {
-        this.route.navigate(['/panel']);
+        this.route.navigate(['/login-bueno']);
     } else {
         this.route.navigate(['/login']);
     }
@@ -120,5 +121,11 @@ public redirecLoging () {
       observe : 'response',
       headers: this.headers
   });
+  }
+
+  public resetCuenta (): void {
+      this.isAuthentication = false;
+      localStorage.clear();
+      this.route.navigate(['']);
   }
 }

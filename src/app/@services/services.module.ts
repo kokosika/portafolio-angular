@@ -1,3 +1,5 @@
+import { ReservaHoraService } from './aplicacion/reserva-hora.service';
+import { ServiciosService } from './aplicacion/servicios.service';
 import { UtilidadService } from './util/utilidad.service';
 import { AuthService } from './auth/auth.service';
 import { VehiculoService } from './aplicacion/vehiculo.service';
@@ -27,7 +29,9 @@ import { EmpleadoService } from './aplicacion/empleado.service';
     VehiculoService,
     UtilidadService,
     ProveedorService,
-    EmpleadoService
+    EmpleadoService,
+    ServiciosService,
+    ReservaHoraService
   ]
 })
 export class ServicesModule {}
